@@ -17,6 +17,10 @@ def make_migrations():
     run_manage('makemigrations')
 
 
+def test():
+    run_manage('test stream.tests')
+
+
 def reset():
     run_manage('flush')
     fixtures = ['admin_account', 'streams', 'items']
