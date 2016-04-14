@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        {% load static %}
+        <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">
+    </head>
+    <body>
+        <header style="background: #337ab7;margin: 0 0 50px;padding: 30px 0;border-bottom: 4px solid #286090;">
+        <div class="container">
+            <div class="panel-heading clearfix">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h1>Stream Page</h1>
+                    <div/>
+                </div>
+        </header>
+        <div class="container">
+            {% if streams %}
+                <ul class="list-unstyled">
+                {% for stream in streams %}
+                    <li>
+                        <div class="row panel panel-default">
+                            <div class="col-md-12">
+                                <p><strong>Stream {{ stream.id }}</strong></p>
+                            </div>
+                            {% if not stream.tweetitem.deleted %}
+                            <div class="col-md-4">{{ stream.tweetitem.text }}</div>
+                            {% endif %}
+                            {% if not stream.photoitem.deleted %}
+                            <div class="col-md-6"><img src="{{ stream.photoitem.image.url }}"/></div>
+                            {% endif %}
+                        </div>
+                    </li>
+                {% endfor %}
+                </ul>
+            {% else %}
+                <div class="row">
+                    <p>No streams are available.</p>
+                </div>
+            {% endif %}
+        </div>
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    </body>
+</html>
